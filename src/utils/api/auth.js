@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = process.env.REACT_APP_HOST_ADDRESS
+const url = 'https://acfcb.herokuapp.com'
 
 export const login = async user => {
     try {
