@@ -1,5 +1,5 @@
 import { message } from "antd"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { LoadContext } from "../context/loadContext"
 import { addCourse } from "../utils/api/courses"
 import { removeModal } from "../utils/helper"

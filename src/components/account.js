@@ -6,7 +6,6 @@ import Layout from '../layout'
 import { accountDetails } from '../utils/api/account'
 import { courseSelections } from '../utils/api/courses'
 import { formatter } from '../utils/helper'
-var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
 const Account = () => {
 

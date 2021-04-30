@@ -2,7 +2,7 @@ import { message } from "antd"
 import { useContext, useEffect, useState } from "react"
 import { CourseContext } from "../context/courseContext"
 import { LoadContext } from "../context/loadContext"
-import { addCourse, updateCourse } from "../utils/api/courses"
+import { updateCourse } from "../utils/api/courses"
 import { removeModal } from "../utils/helper"
 
 const EditCourseModal = () => {

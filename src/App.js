@@ -7,8 +7,6 @@ import Dashboard from './components/dashboard'
 import Account from './components/account'
 import PrivateRoute from './components/protectedRoute'
 import Courses from './components/courses'
-import Layout from './layout'
-import CourseContextProvider from './context/courseContext'
 
 const App = () => {
   return (
