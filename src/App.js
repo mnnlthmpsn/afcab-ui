@@ -10,7 +10,7 @@ import Courses from './components/courses'
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path='/' component={Login} exact />
         <PrivateRoute path='/account/:id' component={Account} />
