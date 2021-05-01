@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/afcab-ui/static/css/main.2570b81a.chunk.css",
-    "main.js": "/afcab-ui/static/js/main.797cdf76.chunk.js",
-    "main.js.map": "/afcab-ui/static/js/main.797cdf76.chunk.js.map",
+    "main.js": "/afcab-ui/static/js/main.5c84112d.chunk.js",
+    "main.js.map": "/afcab-ui/static/js/main.5c84112d.chunk.js.map",
     "runtime-main.js": "/afcab-ui/static/js/runtime-main.bd039721.js",
     "runtime-main.js.map": "/afcab-ui/static/js/runtime-main.bd039721.js.map",
     "static/css/2.21faa3a9.chunk.css": "/afcab-ui/static/css/2.21faa3a9.chunk.css",
-    "static/js/2.cdd8da0b.chunk.js": "/afcab-ui/static/js/2.cdd8da0b.chunk.js",
-    "static/js/2.cdd8da0b.chunk.js.map": "/afcab-ui/static/js/2.cdd8da0b.chunk.js.map",
+    "static/js/2.bdaeb257.chunk.js": "/afcab-ui/static/js/2.bdaeb257.chunk.js",
+    "static/js/2.bdaeb257.chunk.js.map": "/afcab-ui/static/js/2.bdaeb257.chunk.js.map",
     "index.html": "/afcab-ui/index.html",
     "static/css/2.21faa3a9.chunk.css.map": "/afcab-ui/static/css/2.21faa3a9.chunk.css.map",
     "static/css/main.2570b81a.chunk.css.map": "/afcab-ui/static/css/main.2570b81a.chunk.css.map",
-    "static/js/2.cdd8da0b.chunk.js.LICENSE.txt": "/afcab-ui/static/js/2.cdd8da0b.chunk.js.LICENSE.txt",
+    "static/js/2.bdaeb257.chunk.js.LICENSE.txt": "/afcab-ui/static/js/2.bdaeb257.chunk.js.LICENSE.txt",
     "static/media/course.75e731a6.jpg": "/afcab-ui/static/media/course.75e731a6.jpg",
     "static/media/edu.7bf55f5f.jpg": "/afcab-ui/static/media/edu.7bf55f5f.jpg",
     "static/media/profile.5faf09a7.png": "/afcab-ui/static/media/profile.5faf09a7.png"
@@ -19,8 +19,8 @@
   "entrypoints": [
     "static/js/runtime-main.bd039721.js",
     "static/css/2.21faa3a9.chunk.css",
-    "static/js/2.cdd8da0b.chunk.js",
+    "static/js/2.bdaeb257.chunk.js",
     "static/css/main.2570b81a.chunk.css",
-    "static/js/main.797cdf76.chunk.js"
+    "static/js/main.5c84112d.chunk.js"
   ]
 }
