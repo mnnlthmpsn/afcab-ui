@@ -4,6 +4,7 @@ import Buttons from './buttons'
 import StudentModal from './studentModal'
 import EditCourseModal from './editCourseModal'
 import StudentCourseModal from './studentCourseModal'
+import PaymentModal from './paymentModal'
 
 const Layout = props => {
     return (
@@ -36,6 +37,7 @@ const Layout = props => {
             <StudentModal />
             <EditCourseModal />
             <StudentCourseModal />
+            <PaymentModal />
         </div>
     )
 }

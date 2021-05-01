@@ -1,9 +1,10 @@
 import { message } from 'antd'
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { CourseContext } from '../context/courseContext'
 import { LoadContext } from '../context/loadContext'
 import Layout from '../layout'
-import { accountDetails } from '../utils/api/account'
+import { accountDetails, allTransactions } from '../utils/api/account'
 import { courseSelections } from '../utils/api/courses'
 import { formatter } from '../utils/helper'
 
@@ -11,9 +12,11 @@ const Account = () => {
 
     const { id } = useParams()
     const { refreshData } = useContext(LoadContext)
+    const { set_detail } = useContext(CourseContext)
 
     const [account, setAccount] = useState({})
     const [courses, setCourses] = useState([])
+    const [transactions, setTransactions] = useState([])
     const [loading, setLoading] = useState(false)
 
     const getAccountDetails = async () => {
@@ -22,6 +25,7 @@ const Account = () => {
             const res = await accountDetails(id)
             setAccount(res.data)
             getCourses(res.data.student.id)
+            getTransactions(res.data.id)
             setLoading(false)
         } catch (err) {
             setLoading(false)
@@ -29,19 +33,31 @@ const Account = () => {
         }
     }
 
+    const storeDetails = (student, course) => {
+        set_detail(student, course)
+    }
+
     const getCourses = async id => {
         try {
             const res = await courseSelections(id)
-            console.log(res.data)
             setCourses(res.data)
         } catch (err) {
             console.log(err)
         }
     }
 
+    const getTransactions = async id => {
+        try {
+            const res = await allTransactions(id)
+            console.log(res.data)
+            setTransactions(res.data)
+        } catch (err) {
+            message.error(err.message)
+        }
+    }
+
     useEffect(() => {
         getAccountDetails()
-        getCourses()
     }, [refreshData])
 
     return (
@@ -90,9 +106,15 @@ const Account = () => {
                                     <td>{course.course.title}</td>
                                     <td>{formatter.format(course.course.fee)}</td>
                                     <td>
-                                        <button class="btn btn-primary btn-sm mr-1" type="button" data-toggle="modal" data-target="#">Make Payment
+                                        <div class="row">
+                                            <button class="btn btn-primary btn-sm mr-1" 
+                                                type="button" data-toggle="modal" data-target="#paymentModal" onClick={() => storeDetails(account.student, course.course.id)}>Make Payment
                                             <i class="fas fa-money-bill-wave-alt pl-2"></i>
-                                        </button>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))
@@ -111,24 +133,31 @@ const Account = () => {
                     <tr>
                         <th style={{ width: '5%' }}>#</th>
                         <th scope="col-3">Date</th>
-                        <th style={{ width: '25%' }}>Amount Paid</th>
-                        <th style={{ width: '25%' }}>Amount Left</th>
+                        <th>Course</th>
+                        <th style={{ width: '20%' }}>Amount Paid</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Date here</td>
-                        <td>GHc 1,000</td>
-                        <td>GHc 1,000</td>
-                        <td class="row justify-content-center">
-                            <button class="btn btn-sm btn-success">
-                                <i class="fas fa-download"></i> Generate Receipt
-                            </button>
-                        </td>
-                    </tr>
-
+                    {
+                        !transactions.length
+                            ? <td colSpan={5}>
+                                <p class="lead text-center mt-4">No transactions made on Account</p>
+                            </td>
+                            : transactions.map((tr, i) => (
+                                <tr key={i}>
+                                    <th scope="row">{i+1}</th>
+                                    <td>{tr.created_at}</td>
+                                    <td>{tr.course.title}</td>
+                                    <td>{tr.amt_paid}</td>
+                                    <td class="row justify-content-center">
+                                        <button class="btn btn-sm btn-success">
+                                            <i class="fas fa-download"></i> Generate Receipt
+                                </button>
+                                    </td>
+                                </tr>
+                            ))
+                    }
                 </tbody>
             </table>
             {/* table end */}

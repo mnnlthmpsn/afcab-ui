@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const url = 'https://acfcb.herokuapp.com'
+// const url = 'https://acfcb.herokuapp.com'
+const url = 'http://localhost:8000'
+
 
 export const addCourse = async course => {
   try {
