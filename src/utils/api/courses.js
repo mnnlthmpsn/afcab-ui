@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-// const url = 'https://acfcb.herokuapp.com'
-const url = 'http://localhost:8000'
+const url = process.env.NODE_ENV === 'production' 
+            ? 'https://acfcb.herokuapp.com' 
+            : 'http://localhost:8000'
 
 
 export const addCourse = async course => {
