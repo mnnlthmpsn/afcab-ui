@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const url = process.env.NODE_ENV === 'production' 
             ? 'https://acfcb.herokuapp.com' 
-            : 'http://localhost:8000'
+            : 'http://localhost:1337'
 
 export const accountDetails = async id => {
     try {

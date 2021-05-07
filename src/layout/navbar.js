@@ -22,6 +22,7 @@ const Navbar = () => {
 
     const logout = () => {
         sessionStorage.clear()
+        localStorage.clear()
         history.replace('/')
     }
 
@@ -50,7 +51,7 @@ const Navbar = () => {
                                 <img class="border rounded-circle img-profile" width="30" src={profilePic} />
                             </a>
                             <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in">
-                                <a class="dropdown-item" href="#">
+                                {/* <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
                                 </a>
                                 <a class="dropdown-item" href="#">
@@ -58,7 +59,7 @@ const Navbar = () => {
                                 </a><a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity log
                                 </a>
-                                <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div> */}
                                 <p class="dropdown-item" role="button" onClick={e=> logout()}>
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
                                 </p>

@@ -5,6 +5,7 @@ import StudentModal from './studentModal'
 import EditCourseModal from './editCourseModal'
 import StudentCourseModal from './studentCourseModal'
 import PaymentModal from './paymentModal'
+import DeleteModal from './deleteModal'
 
 const Layout = props => {
     return (
@@ -38,6 +39,7 @@ const Layout = props => {
             <EditCourseModal />
             <StudentCourseModal />
             <PaymentModal />
+            <DeleteModal />
         </div>
     )
 }

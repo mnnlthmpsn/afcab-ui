@@ -1,6 +1,6 @@
 import { message } from 'antd'
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { CourseContext } from '../context/courseContext'
 import { LoadContext } from '../context/loadContext'
 import Layout from '../layout'
@@ -13,6 +13,7 @@ const Account = () => {
     const { id } = useParams()
     const { refreshData } = useContext(LoadContext)
     const { set_detail } = useContext(CourseContext)
+    const history = useHistory()
 
     const [account, setAccount] = useState({})
     const [courses, setCourses] = useState([])
@@ -49,11 +50,20 @@ const Account = () => {
     const getTransactions = async id => {
         try {
             const res = await allTransactions(id)
-            console.log(res.data)
             setTransactions(res.data)
         } catch (err) {
             message.error(err.message)
         }
+    }
+
+    const handleStudentDelete = e => {
+        localStorage.setItem('delete', 'student');
+        localStorage.setItem('sid', id)
+    }
+
+    const deleteCourseSelection = csid => {
+        localStorage.setItem('delete', 'course-selection')
+        localStorage.setItem('csid', csid)
     }
 
     useEffect(() => {
@@ -111,7 +121,7 @@ const Account = () => {
                                                 type="button" data-toggle="modal" data-target="#paymentModal" onClick={() => storeDetails(account.student, course.course.id)}>Make Payment
                                             <i class="fas fa-money-bill-wave-alt pl-2"></i>
                                             </button>
-                                            <button class="btn btn-danger btn-sm">
+                                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" onClick={() => deleteCourseSelection(course.id)}>
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </div>
@@ -167,7 +177,7 @@ const Account = () => {
                     <button class="btn btn-outline-primary btn-sm mr-1" type="button" data-toggle="modal" data-target="#">Edit Student
                                     <i class="fas fa-edit pl-2"></i>
                     </button>
-                    <button class="btn btn-danger btn-sm mr-1" type="button" data-toggle="modal" data-target="#">Delete Student
+                    <button class="btn btn-danger btn-sm mr-1" type="button" data-toggle="modal" data-target="#deleteModal" onClick={handleStudentDelete}>Delete Student
                                     <i class="fas fa-trash pl-2"></i>
                     </button>
                 </div>

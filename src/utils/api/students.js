@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const url = process.env.NODE_ENV === 'production' 
             ? 'https://acfcb.herokuapp.com' 
-            : 'http://localhost:8000'
+            : 'http://localhost:1337'
 
 
 export const allStudents = async () => {
@@ -26,3 +26,13 @@ export const addStudent = async student => {
     throw err;
   }
 };
+
+export const deleteStudent = async id => {
+  try {
+    return await axios.delete(`${url}/students/${id}`, { 
+      headers: { Authorization: `Bearer ${sessionStorage.getItem("uri")}` }
+     })
+  } catch (err) {
+    throw err;
+  }
+}

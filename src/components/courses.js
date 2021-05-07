@@ -22,6 +22,11 @@ const Courses = () => {
         }
     }
 
+    const handleCourseDelete = course_id => {
+        localStorage.setItem('delete', 'course')
+        localStorage.setItem('cid', course_id)
+    }
+
     const storeCourseID = course => {
         set_currentCourse(course)
     }
@@ -53,7 +58,7 @@ const Courses = () => {
                                             <p>Fee: <span class="lead text-secondary">{formatter.format(course.fee)}</span></p>
                                         </div>
                                         <div class="card-footer">
-                                        <div class="row justify-content-center">
+                                            <div class="row justify-content-center">
                                                 <button role="button" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="bottom" title="Edit Course"
                                                     onClick={() => storeCourseID(course)} data-toggle="modal" data-target="#editCourseModal">
                                                     <i role="button" class="fas fa-edit"></i>
@@ -67,7 +72,7 @@ const Courses = () => {
                                                 >
                                                     <i role="button" class="fas fa-plus"></i>
                                                 </button>
-                                                <button role="button" class="btn btn-sm btn-danger ml-1" data-toggle="tooltip" data-placement="bottom" title="Delete Course">
+                                                <button role="button" class="btn btn-sm btn-danger ml-1" data-toggle="tooltip" data-placement="bottom" title="Delete Course" data-toggle="modal" data-target="#deleteModal" onClick={() => handleCourseDelete(course.id)}>
                                                     <i role="button" class="fas fa-trash"></i>
                                                 </button>
                                             </div>
