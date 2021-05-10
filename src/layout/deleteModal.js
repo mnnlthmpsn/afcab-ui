@@ -2,7 +2,7 @@ import { message } from "antd";
 import { useContext } from "react";
 import { useHistory } from "react-router";
 import { LoadContext } from "../context/loadContext";
-import { deleteCourse, deleteCourseSelection } from "../utils/api/courses";
+import { deleteCourse } from "../utils/api/courses";
 import { deleteStudent } from "../utils/api/students";
 
 const DeleteModal = () => {
@@ -27,15 +27,6 @@ const DeleteModal = () => {
                 const id = localStorage.getItem('cid')
                 await deleteCourse(id)
                 message.success("Course deleted successfully")
-                set_refreshData(!refreshData)
-            } catch (err) {
-                message.error(err.message)
-            }
-        } else if (modelToDelete === 'course-selection'){
-            try {
-                const id = localStorage.getItem('csid')
-                await deleteCourseSelection(id)
-                message.success("Student Enrollment removed successfully")
                 set_refreshData(!refreshData)
             } catch (err) {
                 message.error(err.message)

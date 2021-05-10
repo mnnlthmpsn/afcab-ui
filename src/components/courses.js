@@ -29,6 +29,7 @@ const Courses = () => {
 
     const storeCourseID = course => {
         set_currentCourse(course)
+        localStorage.setItem('course', course.id)
     }
 
     useEffect(() => {

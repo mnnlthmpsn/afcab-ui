@@ -50,7 +50,6 @@ export const courseSelections = async student_id => {
 }
 
 export const enrollStudentToCourse = async (course_id, student_id) => {
-  console.log(course_id, student_id)
   try {
     await axios.post(`${url}/course-selections`,
       {
@@ -76,9 +75,19 @@ export const deleteCourse = async id => {
   }
 }
 
-export const deleteCourseSelection = async id => {
+export const checkStudentCourse = async (course, student) => {
   try {
-    return await axios.delete(`${url}/course-selections/${id}`, {
+    return await axios.get(`${url}/course-selections?[course.id]=${course}&[student.id]=${student}`, { 
+      headers: { Authorization: `Bearer ${sessionStorage.getItem("uri")}` }
+     })
+  } catch (err) {
+    throw err;
+  }
+}
+
+export const getCourse = async cid => {
+  try {
+    return await axios.get(`${url}/courses/${cid}`, {
       headers: { Authorization: `Bearer ${sessionStorage.getItem("uri")}` }
     })
   } catch (err) {

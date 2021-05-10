@@ -15,6 +15,16 @@ export const allStudents = async () => {
       }
 }
 
+export const getStudent = async sid => {
+  try {
+    return await axios.get(`${url}/students/${sid}`, {
+      headers: { Authorization: `Bearer ${sessionStorage.getItem("uri")}` }
+    })
+  } catch (err) {
+    throw err;
+  }
+}
+
 export const addStudent = async student => {
   try {
     return await axios.post(`${url}/students`, student,
@@ -34,5 +44,15 @@ export const deleteStudent = async id => {
      })
   } catch (err) {
     throw err;
+  }
+}
+
+export const studentsNotEnrolledInCourse = async course_id => {
+  try {
+    return await axios.get(`${url}/course-selections?[course.id_ne]=${course_id}`, {
+      headers: { Authorization: `Bearer ${sessionStorage.getItem("uri")}` }
+    })
+  } catch (err) {
+    
   }
 }

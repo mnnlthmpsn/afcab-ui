@@ -7,6 +7,7 @@ import Dashboard from './components/dashboard'
 import Account from './components/account'
 import PrivateRoute from './components/protectedRoute'
 import Courses from './components/courses'
+import Receipt from './components/receipt'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <PrivateRoute path='/account/:id' component={Account} />
         <PrivateRoute path='/courses' component={Courses} />
         <PrivateRoute path='/dashboard' component={Dashboard} />
+        <Route path='/receipt/:transaction_id' component={Receipt} />
       </Switch>
     </HashRouter>
   )

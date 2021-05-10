@@ -2,7 +2,7 @@ import { message } from "antd"
 import { useContext, useEffect, useState } from "react"
 import { LoadContext } from "../context/loadContext"
 import { CourseContext } from '../context/courseContext'
-import { enrollStudentToCourse } from "../utils/api/courses"
+import { checkStudentCourse, enrollStudentToCourse } from "../utils/api/courses"
 import { allStudents } from "../utils/api/students"
 import { removeModal } from "../utils/helper"
 
@@ -10,17 +10,30 @@ const StudentCourseModal = () => {
 
     const { refreshData, set_refreshData } = useContext(LoadContext)
     const { currentCourse } = useContext(CourseContext)
-    const [ loading, setLoading ] = useState(false)
-    const [ students, setStudents ] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [students, setStudents] = useState([])
     const [student_id, setStudentID] = useState('')
 
     const handleSubmit = async e => {
         e.preventDefault()
         try {
             removeModal('studentCourseModal')
-            await enrollStudentToCourse(currentCourse.id, student_id)
-            set_refreshData(!refreshData)
-            message.success(`Student Enrolled successfully`)
+            checkIfStudentEnrolledInCourse(currentCourse.id, student_id)
+        } catch (err) {
+            message.error(err.message)
+        }
+    }
+
+    const checkIfStudentEnrolledInCourse = async (course, student) => {
+        try {
+            const res = await checkStudentCourse(course, student)
+            if (res.data.length > 0) {
+                throw { message: "Student already enrolled" }
+            } else {
+                await enrollStudentToCourse(currentCourse.id, student_id)
+                set_refreshData(!refreshData)
+                message.success(`Student Enrolled successfully`)
+            }
         } catch (err) {
             message.error(err.message)
         }
@@ -47,13 +60,13 @@ const StudentCourseModal = () => {
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Enroll Student to { currentCourse.title} </h4>
+                        <h4 class="modal-title">Enroll Student to {currentCourse.title} </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        { loading && <p>...loading</p> }
+                        {loading && <p>...loading</p>}
                         <form onSubmit={handleSubmit}>
                             <div class="form-group">
                                 <select onChange={e => setStudentID(e.target.value)} class="form-control">

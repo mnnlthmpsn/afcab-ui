@@ -12,8 +12,8 @@ const Buttons = () => {
                         {
                             location.pathname !== "/dashboard" &&
                             <Link to='/dashboard'>
-                                <button class="btn btn-outline-primary btn-sm mr-1" type="button">Home
-                                    <i class="fas fa-home pl-2"></i>
+                                <button class="btn btn-outline-primary btn-sm mr-1" type="button">View All Students
+                                    <i class="fas fa-eye pl-2"></i>
                                 </button>
                             </Link>
                         }

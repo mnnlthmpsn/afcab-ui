@@ -16,8 +16,7 @@ const PaymentModal = () => {
         
         try {
             removeModal('paymentModal')
-            const res = await makePayment(transactionDetail.student.account, amt, transactionDetail.course)
-            console.log(res)
+            await makePayment(transactionDetail.student.account, amt, transactionDetail.course)
             set_refreshData(!refreshData)
             message.success(`Fees paid successfully`)
         } catch (err) {
@@ -42,7 +41,7 @@ const PaymentModal = () => {
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-sm btn-light" type="button" data-dismiss="modal">Close</button>
-                                <button class="btn btn-sm btn-primary" type="submit">Enroll Student</button>
+                                <button class="btn btn-sm btn-primary" type="submit">Make Payment</button>
                             </div>
                         </form>
                     </div>
