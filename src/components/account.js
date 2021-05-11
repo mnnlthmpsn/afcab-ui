@@ -136,6 +136,7 @@ const Account = () => {
                         <th scope="col-3">Date</th>
                         <th>Course</th>
                         <th style={{ width: '20%' }}>Amount Paid</th>
+                        <th class="text-center">Initiator</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
@@ -151,6 +152,7 @@ const Account = () => {
                                     <td>{tr.created_at}</td>
                                     <td>{tr.course.title}</td>
                                     <td>{tr.amt_paid}</td>
+                                    <td>{tr.initiator ? tr.initiator.username : ''} - {tr.initiator ? tr.initiator.email : ''}</td>
                                     <td class="row justify-content-center">
                                         <Link to={`/receipt/${tr.id}`} download>
                                             <button class="btn btn-sm btn-success">

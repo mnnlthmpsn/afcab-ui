@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from "react"
 import { useHistory } from "react-router"
 import { LoadContext } from '../context/loadContext'
 import { currentUser } from "../utils/api/auth"
+import logo from '../assets/img/afcab.png'
 
 import profilePic from '../assets/img/profile.png'
 
@@ -33,7 +34,7 @@ const Navbar = () => {
     return (
         <nav class="navbar navbar-light navbar-expand bg-white shadow-sm mb-4 topbar static-top">
             <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
-                <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                {/* <form class="form-inline d-none d-sm-inline-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
                         <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." />
                         <div class="input-group-append">
@@ -42,7 +43,10 @@ const Navbar = () => {
                             </button>
                         </div>
                     </div>
-                </form>
+                </form> */}
+                <div class="px-5">
+                    <img class="img img-fluid" width='50' src={logo} />
+                </div>
                 <ul class="navbar-nav flex-nowrap ml-auto">
                     <li class="nav-item dropdown no-arrow">
                         <div class="nav-item dropdown no-arrow">
@@ -60,7 +64,7 @@ const Navbar = () => {
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity log
                                 </a>
                                 <div class="dropdown-divider"></div> */}
-                                <p class="dropdown-item" role="button" onClick={e=> logout()}>
+                                <p class="dropdown-item" role="button" onClick={e => logout()}>
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Logout
                                 </p>
                             </div>

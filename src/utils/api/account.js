@@ -16,6 +16,7 @@ export const accountDetails = async id => {
 
 export const makePayment = async (acc, amt, course) => {
   const acc_det = await accountDetails(acc)
+  const staff = await getLoggedInUser()
 
   if (acc_det.data.amt_due - amt < 0) {
     throw { message: "Cannot pay more than owed" }
@@ -24,7 +25,8 @@ export const makePayment = async (acc, amt, course) => {
       return await axios.post(`${url}/transactions`, {
         account: acc,
         amt_paid: parseInt(amt),
-        course: course
+        course: course,
+        initiator: staff.data.id
       },
         {
           headers: { Authorization: `Bearer ${sessionStorage.getItem("uri")}` }
@@ -33,6 +35,16 @@ export const makePayment = async (acc, amt, course) => {
     } catch (err) {
       throw err;
     }
+  }
+}
+
+export const getLoggedInUser = async () => {
+  try {
+    return await axios.get(`${url}/users/me`, {
+      headers: { Authorization: `Bearer ${sessionStorage.getItem("uri")}` }
+    })
+  } catch (err) {
+    
   }
 }
 

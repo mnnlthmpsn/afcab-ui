@@ -27,6 +27,16 @@ export const allCourses = async () => {
   }
 }
 
+export const getCourse = async cid => {
+  try {
+    return await axios.get(`${url}/courses/${cid}`, {
+      headers: { Authorization: `Bearer ${sessionStorage.getItem("uri")}` }
+    })
+  } catch (err) {
+    throw err;
+  }
+}
+
 export const updateCourse = async (course, course_id) => {
   try {
     await axios.put(`${url}/courses/${course_id}`, course,
@@ -85,12 +95,13 @@ export const checkStudentCourse = async (course, student) => {
   }
 }
 
-export const getCourse = async cid => {
+// course selection for particular course
+export const getCourseSelection = async course_id => {
   try {
-    return await axios.get(`${url}/courses/${cid}`, {
+    return await axios.get(`${url}/course-selections?[course.id]=${course_id}`, {
       headers: { Authorization: `Bearer ${sessionStorage.getItem("uri")}` }
     })
   } catch (err) {
-    
+    throw err;
   }
 }

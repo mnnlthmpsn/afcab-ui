@@ -4,8 +4,9 @@ import { LoadContext } from '../context/loadContext'
 import { CourseContext } from '../context/courseContext'
 import { allCourses } from "../utils/api/courses"
 import Layout from '../layout'
-import courseImg from '../assets/img/course.jpg'
+import courseImg from '../assets/img/afcab.png'
 import { formatter } from "../utils/helper"
+import { Link } from "react-router-dom"
 
 const Courses = () => {
 
@@ -64,9 +65,11 @@ const Courses = () => {
                                                     onClick={() => storeCourseID(course)} data-toggle="modal" data-target="#editCourseModal">
                                                     <i role="button" class="fas fa-edit"></i>
                                                 </button>
-                                                <button role="button" class="btn btn-sm btn-info ml-1" data-toggle="tooltip" data-placement="bottom" title="Course details">
-                                                    <i role="button" class="fas fa-eye"></i>
-                                                </button>
+                                                <Link to={`/course/${course.id}`}>
+                                                    <button role="button" class="btn btn-sm btn-info ml-1" data-toggle="tooltip" data-placement="bottom" title="Course details">
+                                                        <i role="button" class="fas fa-eye"></i>
+                                                    </button>
+                                                </Link>
                                                 <button role="button" class="btn btn-sm btn-warning ml-1" data-toggle="tooltip" data-placement="bottom" title="Add Student to Course"
                                                     data-toggle="modal" data-target="#studentCourseModal"
                                                     onClick={() => storeCourseID(course)}

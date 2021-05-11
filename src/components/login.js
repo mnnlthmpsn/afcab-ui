@@ -3,7 +3,7 @@ import { useState } from "react"
 import { login } from '../utils/api/auth'
 
 import { useHistory } from 'react-router-dom'
-import img from '../assets/img/edu.jpg'
+import img from '../assets/img/afcab.png'
 
 const Login = () => {
 
@@ -34,7 +34,7 @@ const Login = () => {
         <div class="container vh-100">
             <div class="row align-items-center justify-content-center vh-100">
                 <div class="col-md-9 col-lg-12 col-xl-10">
-                    <div class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card shadow-lg o-hidden border-0 my-5 py-5">
                         <div class="card-body p-0">
                             <div class="row">
                                 <div class="col-lg-6 d-none d-lg-flex">
@@ -48,7 +48,7 @@ const Login = () => {
                                         <div class="text-center">
                                             <h4 class="text-dark mb-4">Welcome Back!</h4>
                                         </div>
-                                        <form class="user" onSubmit={handleLogin}>
+                                        <form class="user card p-3" onSubmit={handleLogin}>
                                             <div class="form-group">
                                                 <input type="email"
                                                     onChange={e => setUser({ ...user, email: e.target.value })}
@@ -64,10 +64,8 @@ const Login = () => {
                                             <button class="btn btn-primary w-100" type="submit" disabled={loading}>
                                                 { loading ? <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> : 'Login' }
                                             </button>
-                                            <hr />
                                         </form>
                                         <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a></div>
-                                        <div class="text-center"><a class="small" href="register.html">Create an Account!</a></div>
                                     </div>
                                 </div>
                             </div>

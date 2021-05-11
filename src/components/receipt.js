@@ -2,6 +2,7 @@ import { message } from 'antd'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import logo from '../assets/img/afcab.png'
+import { getLoggedInUser } from '../utils/api/account'
 import { getCourse } from '../utils/api/courses'
 import { getStudent } from '../utils/api/students'
 import { transactionDetail } from '../utils/api/transaction'
@@ -12,6 +13,7 @@ const Receipt = () => {
     const { transaction_id } = useParams()
     const [transaction, setTransaction] = useState({})
     const [student, setStudent] = useState({})
+    const [initiator, setInitiator] = useState({})
     const [course, setCourse] = useState({})
 
     const getTransaction = async () => {
@@ -27,8 +29,20 @@ const Receipt = () => {
         }
     }
 
-    useEffect(() => {
-        getTransaction()
+    const getInitiator = async () => {
+        try {
+            const res = await getLoggedInUser()
+            setInitiator(res.data)
+        } catch (err) {
+            message.error("Server connection lost")
+        }
+    }
+
+
+    useEffect(async () => {
+        await getTransaction()
+        await getInitiator()
+        window.print()
     }, [])
 
     return (
@@ -101,15 +115,17 @@ const Receipt = () => {
                     </tfoot>
                 </table>
             </div>
-            <div class="row pt-4">
+            <div class="row pt-4 p-0">
                 <div class="col d-lg-flex justify-content-lg-end">
                     <div class="col-4">
-                        <textarea class="form-control text-right"></textarea>
-                        <label class="lead">Signature</label>
+                        <p class="p-0 m-0">{initiator.email}</p>
+                        <hr />
+                        <label class="small p-0 mb-3">Staff signature</label>
                     </div>
                 </div>
             </div>
         </div>
+        
     )
 }
 
